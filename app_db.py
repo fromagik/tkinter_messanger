@@ -14,16 +14,9 @@ def create_table():
                    login TEXT NOT NULL UNIQUE,
                    password TEXT NOT NULL,
                    authenticated INTEGER) ''') 
-    #_________ДОРАБОТАЙ ТАБЛИЦУ, ДОБАВЬ ЗАВИСИМОСТЬ ОТ ПЕРВОЙ ТАБЛИЦЫ___________________
-    # cursor.execute(''' 
-    #                CREATE TABLE IF NOT EXISTS contacts(
-    #                id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #                name TEXT NOT NULL UNIQUE,
-    #                phone TEXT,
-    #                birthday TEXT) 
-    #                ''')
     connect.commit() 
     connect.close() 
+
 
 def set_contact(login, password, auth): # Додаємо користувача
     connect = get_connection()
@@ -32,18 +25,6 @@ def set_contact(login, password, auth): # Додаємо користувача
     connect.commit()
     connect.close()
 
-
-
-
-#____________________________________
-# Не разобрался с 2 функциями :)
-# Хотя модно использовать первую для изминения активности пользователя и вызывать при входе или выходе
-# def authentification_user(login: str, authenticated: bool): # Аутеттифицирует юзера 
-#     connect = get_connection()
-#     cursor = connect.cursor()
-#     cursor.execute('UPDATE users SET authenticated = ? WHERE username = ?', (int(authenticated), login))
-#     connect.commit()
-#     connect.close()
 
 def get_user(login): # Возвращает пользователя и его статус, для аутентификации 
     connect = get_connection()
@@ -54,8 +35,6 @@ def get_user(login): # Возвращает пользователя и его �
     if user:
         return {'Login': user[0], 'authenticated': bool(user[1])} 
     return None
-# __________________________
-
 
 
 def table_exist(table_name): # Перевірка на існування таблиці

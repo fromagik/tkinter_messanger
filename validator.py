@@ -52,7 +52,7 @@ def user_required(func):
     return inner
 
 
-# Декораток для выхода пользоваеля, нужно провести тест на работоспособность
+# Декораток для выхода пользоваеля
 def user_logout(func):
     @wraps(func)
     def inner (self, current_user, *args, **kwargs):
